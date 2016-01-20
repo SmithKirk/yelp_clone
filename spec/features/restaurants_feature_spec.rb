@@ -32,13 +32,10 @@ feature 'restaurants' do
     end
 
     context 'an invalid restaurant' do
-      xit 'does not let you submit a name that already exists' do
-        visit '/restaurants'
-        click_link 'Add a restaurant'
-        fill_in 'Name', with: 'KFC'
-        click_button 'Create Restaurant'
-        expect(page).to have_content 'error'
-        expect(current_path).to eq '/restaurants'
+      it 'does not let you submit a name that already exists' do
+        Restaurant.create(name: 'KFC')
+        restaurant = Restaurant.new(name: 'KFC')
+        expect(restaurant).to have(1).error_on(:name)
       end
 
       it ' does not let you submit a name that is too short' do
