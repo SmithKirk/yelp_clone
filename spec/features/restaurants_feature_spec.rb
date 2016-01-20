@@ -45,7 +45,7 @@ feature 'restaurants' do
         visit '/restaurants'
         click_link 'Add a restaurant'
         fill_in 'Name', with: 'kf'
-        click_button 'Create Restauarant'
+        click_button 'Create Restaurant'
         expect(page).not_to have_css 'hs', text: 'kf'
         expect(page).to have_content 'error'
       end
